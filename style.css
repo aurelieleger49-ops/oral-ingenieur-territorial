@@ -4,7 +4,7 @@ body {
     color: #222;
 }
 #index-container, #theme-container, #quiz-container, #questions-container {
-    width: 440px;
+    width: 700px;
     margin: 30px auto;
     background: #fff;
     padding: 30px;
