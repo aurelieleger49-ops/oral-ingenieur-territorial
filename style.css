@@ -4,10 +4,10 @@ body {
     color: #222;
 }
 #index-container, #theme-container, #quiz-container, #questions-container {
-    width: 700px;
-    margin: 30px auto;
+    width: 1100px;
+    margin: 20px auto;
     background: #fff;
-    padding: 30px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 2px 2px 8px #aaa;
 }
