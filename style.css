@@ -2,50 +2,63 @@ body {
     font-family: Arial, sans-serif;
     background: #f8f8ff;
     color: #222;
+    margin: 0;
+    padding: 0;
 }
+
 #index-container, #theme-container, #quiz-container, #questions-container {
     width: 1000px;
     margin: 20px auto;
     background: #fff;
-    padding: 20px;
+    padding: 20px 30px;
     border-radius: 10px;
     box-shadow: 2px 2px 8px #aaa;
+    box-sizing: border-box;
 }
+
 h1, h2 {
     color: #123466;
     margin-bottom: 2em;
-	text-align: center;
+    text-align: center;
 }
+
 ul {
     padding-left: 0;
 }
+
 ul li {
     list-style: none;
     margin: 12px 0;
 }
+
 li {
     list-style: circle;
     margin: 12px 0;
 }
+
 a {
     text-decoration: none;
     color: #2466aa;
     font-size: 18px;
     transition: color 0.16s;
-	display: inline-block;
+    display: inline-block;
     text-align: center;
 }
+
 a:hover {
     color: #d13636;
-	display: inline-block;
+    display: inline-block;
     text-align: center;
 }
+
 section {
     margin-bottom: 2em;
 }
+
 label, p {
     font-size: 17px;
 }
+
 input[type="text"] {
     width: 140px;
     padding: 5px;
@@ -53,7 +66,9 @@ input[type="text"] {
     border-radius: 3px;
     border: 1px solid #cce;
     margin-right: 10px;
+    box-sizing: border-box;
 }
+
 button {
     background: #123466;
     color: #fff;
@@ -64,12 +79,45 @@ button {
     cursor: pointer;
     border-radius: 4px;
     font-size: 16px;
+    transition: background-color 0.3s ease;
 }
+
 button:hover:enabled {
     background: #2466aa;
 }
+
 #score, #cloze-result {
     margin-top: 18px;
     font-weight: bold;
     font-size: 18px;
+}
+
+/* Styles pour les questions déroulantes */
+
+.question {
+    background-color: #e9ecef;
+    padding: 12px 16px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.question:hover {
+    background-color: #dee2e6;
+}
+
+.reponse {
+    overflow: hidden;
+    background-color: #ffffff;
+    max-height: 0;
+    border-left: 3px solid #007bff;
+    border-radius: 0 0 5px 5px;
+    transition: max-height 0.4s ease-in-out, padding 0.3s ease;
+    padding: 0 16px;
+}
+
+.reponse.ouverte {
+    padding: 12px 16px;
+    max-height: 500px; /* valeur suffisante pour permettre l'affichage complet */
 }
