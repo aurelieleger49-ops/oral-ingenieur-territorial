@@ -121,3 +121,113 @@ button:hover:enabled {
     padding: 12px 16px;
     max-height: 500px; /* valeur suffisante pour permettre l'affichage complet */
 }
+.timeline-frise {
+    display: flex;
+    gap: 28px;
+    font-family: Arial, sans-serif;
+    margin: 30px 0;
+    overflow-x: auto;
+    padding-bottom: 15px;
+  }
+  .phase {
+    min-width: 260px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 1px 2px 11px #bbb7d8;
+    padding: 16px;
+    border-left: 13px solid;
+  }
+  .acte1 { border-color: #2196f3; background: #e3f2fd; }
+  .acte2 { border-color: #e91e63; background: #fde1ee; }
+  .acte3 { border-color: #4caf50; background: #e8f5e9; }
+  .acte4 { border-color: #ffa000; background: #fff3e0; }
+  .phase strong { color: #322958; display: block; margin-bottom: 6px; }
+  .lois { margin-top: 7px; margin-bottom: 7px; font-size: 1em; color: #215170; }
+  .resume { font-size: 1em; background: #f5f4fa; border-radius: 8px; padding: 9px 10px; margin-top: 10px; }
+  .lawname { display: block; font-weight: 600; color:#182f5a; margin-top: 2px; font-size: 1em;
+  }
+  
+  table.collectivites-structure {
+    width: 96%;
+    margin: 32px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 9px #c3d3ef;
+    background: #fff;
+  }
+  th.col-commune      { background: #2196f3; color: #fff; }
+  th.col-departement  { background: #43a047; color: #fff; }
+  th.col-region       { background: #8e44ad; color: #fff; }
+  th.col-special      { background: #e91e63; color: #fff; }
+  td.col-commune      { background: #e3f2fd; }
+  td.col-departement  { background: #e9f7ef; }
+  td.col-region       { background: #f5eaf7; }
+  td.col-special      { background: #fde1ea; }
+  th, td { padding: 12px 8px; text-align: center; }
+  th    { font-size: 1.15em; letter-spacing: 0.5px; }
+  td.col-def, td.col-nombre { font-size: 1.05em; color: #222; }
+  .suplabel { font-size: 0.98em; color: #555;}
+  
+ table.epci-categories {
+    width: 85%;
+    margin: 30px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: Arial, sans-serif;
+    background: #fcfcfc;
+    box-shadow: 0 2px 9px #ffc1a6;
+    border-radius: 10px;
+  }
+  th, td { padding: 13px 10px; text-align: center; }
+  th.cat-fiscale { background: #27ae60; color: #fff; font-size: 1.13em; border-radius: 10px 0 0 0;}
+  th.cat-sansfiscale { background: #e74c3c; color: #fff; font-size: 1.13em; border-radius: 0 10px 0 0;}
+  td.cat-fiscale    { background: #d4efdf; color: #226049; font-size: 1.06em; font-weight: 600;}
+  td.cat-sansfiscale{ background: #fadbd8; color: #a02818; font-size: 1.06em; font-weight: 600;}
+  td.def            { font-size: 1.06em; background: #eff8f3; color: #71460a; }
+  td.def-sans       { font-size: 1.06em; background: #fdf2ef; color: #943a1f;}
+  td.exemples       { background: #eafaf1; color: #24693d; font-size: 1.03em; }
+  td.exemples-sans  { background: #fbeee9; color: #8e3417; font-size: 1.03em; }
+   
+ table.comp-collectivites-col {
+    width: 98%;
+    margin: 36px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 9px #dae3f6;
+    background: #fff;
+  }
+  th.commune      { background: #2196f3; color: #fff; }
+  th.departement  { background: #43a047; color: #fff; }
+  th.region       { background: #8e44ad; color: #fff; }
+  th.special      { background: #e91e63; color: #fff; }
+  th.epci-fiscale { background: #27ae60; color: #fff; }
+  th.epci-sans    { background: #e74c3c; color: #fff; }
+  td.commune      { background: #e3f2fd; }
+  td.departement  { background: #e9f7ef; }
+  td.region       { background: #f5eaf7; }
+  td.special      { background: #fde1ea; }
+  td.epci-fiscale { background: #eafaf1; }
+  td.epci-sans    { background: #fadbd8; }
+  ul { margin: 0 0 0 15px; padding: 0; text-align: left; }
+  li { margin: 4px 0; }
+
+table.fonctionnaire-statut {
+    width: 96%;
+    margin: 36px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    box-shadow: 0 2px 9px #cadbe3;
+  }
+  th.statut     { background: #2196f3; color: #fff; }
+  th.droits     { background: #43a047; color: #fff; }
+  th.devoirs    { background: #e67e22; color: #fff; }
+  td.statut     { background: #e3f2fd; }
+  td.droits     { background: #e9f7ef; }
+  td.devoirs    { background: #fcead7; }
+  th, td { padding: 14px 10px; text-align: left; font-size: 1.06em; }
+  ul { margin: 0 0 0 6px; padding: 0; }
+  li { margin-bottom: 6px; }
