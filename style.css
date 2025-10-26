@@ -273,3 +273,21 @@ table.manager-competences {
   th, td { padding: 14px 11px; text-align: left; font-size: 1.05em; }
   .titre { font-weight: bold; color: #234; }
   .ex { color: #4261a5; }
+
+table.maire-prefet-detail {
+    width: 99%;
+    margin: 32px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    box-shadow: 0 2px 10px #c5dbef;
+  }
+  th.maire   { background: #1976d2; color: #fff; }
+  th.prefet  { background: #e67e22; color: #fff; }
+  td.maire   { background: #e3ecfa; vertical-align: top; }
+  td.prefet  { background: #fcf2e3; vertical-align: top; }
+  th, td { padding: 14px 14px; text-align: left; font-size: 1.04em; }
+  ul { margin: 0 0 0 16px; padding: 0;}
+  li { margin-bottom: 7px;}
+  .titre { font-weight: bold; color: #415a8b;}
