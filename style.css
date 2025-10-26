@@ -231,3 +231,45 @@ table.fonctionnaire-statut {
   th, td { padding: 14px 10px; text-align: left; font-size: 1.06em; }
   ul { margin: 0 0 0 6px; padding: 0; }
   li { margin-bottom: 6px; }
+
+table.management-types {
+    width: 92%;
+    margin: 32px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    box-shadow: 0 2px 9px #bfcbe3;
+  }
+  th.type-dir     { background: #2196f3; color: #fff; }
+  th.type-pers    { background: #43a047; color: #fff; }
+  th.type-part    { background: #8e44ad; color: #fff; }
+  th.type-deleg   { background: #e67e22; color: #fff; }
+  td.type-dir     { background: #e3f2fd; }
+  td.type-pers    { background: #e9f7ef; }
+  td.type-part    { background: #f6eaf7; }
+  td.type-deleg   { background: #fcead6; }
+  th, td { padding: 14px 10px; text-align: left; font-size: 1.04em; }
+  ul { margin: 0 0 0 14px; padding: 0; }
+  li { margin-bottom: 6px; }
+
+table.manager-competences {
+    width: 95%;
+    margin: 38px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    box-shadow: 0 2px 10px #B6D5E3;
+  }
+  th.posture     { background: #1976d2; color: #fff; }
+  th.conflit     { background: #e53935; color: #fff; }
+  th.motivation  { background: #43a047; color: #fff; }
+  th.coord       { background: #ef6c00; color: #fff; }
+  td.posture     { background: #e3ecfa; }
+  td.conflit     { background: #fdeaea; }
+  td.motivation  { background: #e9f8ee; }
+  td.coord       { background: #fff4e3; }
+  th, td { padding: 14px 11px; text-align: left; font-size: 1.05em; }
+  .titre { font-weight: bold; color: #234; }
+  .ex { color: #4261a5; }
