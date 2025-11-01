@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Questions-Réponses depuis Excel</title>
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <style>
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; }
+    th { background-color: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <h2>Import et affichage Questions-Réponses Excel</h2>
+  <input type="file" id="input-excel" accept=".xlsx" />
+  <table id="table-qr">
+    <thead>
+      <tr><th>Question</th><th>Réponse</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+<script>
+document.getElementById('input-excel').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if(!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(evt) {
+    const data = new Uint8Array(evt.target.result);
+    const workbook = XLSX.read(data, {type: 'array'});
+
+    // On prend la première feuille
+    const firstSheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[firstSheetName];
+
+    // Conversion en JSON tableau avec header
+    const jsonData = XLSX.utils.sheet_to_json(worksheet, {defval: ""});
+
+    // Remplissage du tableau HTML
+    const tbody = document.querySelector('#table-qr tbody');
+    tbody.innerHTML = ''; // vide le tableau
+    jsonData.forEach(row => {
+      const tr = document.createElement('tr');
+      const tdQuestion = document.createElement('td');
+      tdQuestion.textContent = row['Questions'] || '';
+      const tdReponse = document.createElement('td');
+      tdReponse.textContent = row['Réponses'] || '';
+      tr.appendChild(tdQuestion);
+      tr.appendChild(tdReponse);
+      tbody.appendChild(tr);
+    });
+  };
+  reader.readAsArrayBuffer(file);
+});
+</script>
+</body>
+</html>
