@@ -2,57 +2,69 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Questions-Réponses depuis Excel</title>
+  <title>Affichage Questions-Réponses par onglet</title>
   <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
   <style>
-    table { border-collapse: collapse; width: 100%; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 2em; }
     th, td { border: 1px solid #ccc; padding: 8px; }
     th { background-color: #f0f0f0; }
+    section { margin-bottom: 2em; }
+    h2 { border-bottom: 2px solid #333; }
   </style>
 </head>
 <body>
-  <h2>Import et affichage Questions-Réponses Excel</h2>
-  <input type="file" id="input-excel" accept=".xlsx" />
-  <table id="table-qr">
-    <thead>
-      <tr><th>Question</th><th>Réponse</th></tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <h1>Import Excel automatique - Questions-Réponses par thème (onglets)</h1>
+  <div id="contenu"></div>
 
 <script>
-document.getElementById('input-excel').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if(!file) return;
+  // Le chemin relatif vers le fichier Excel à charger
+  const fichierExcel = 'Questions_Reponses.xlsx';
 
-  const reader = new FileReader();
-  reader.onload = function(evt) {
-    const data = new Uint8Array(evt.target.result);
-    const workbook = XLSX.read(data, {type: 'array'});
+  fetch(fichierExcel)
+    .then(res => {
+      if (!res.ok) throw new Error('Erreur de chargement du fichier Excel');
+      return res.arrayBuffer();
+    })
+    .then(data => {
+      const workbook = XLSX.read(new Uint8Array(data), {type: 'array'});
+      const container = document.getElementById('contenu');
+      container.innerHTML = '';
 
-    // On prend la première feuille
-    const firstSheetName = workbook.SheetNames[0];
-    const worksheet = workbook.Sheets[firstSheetName];
+      workbook.SheetNames.forEach(sheetName => {
+        const worksheet = workbook.Sheets[sheetName];
+        const jsonData = XLSX.utils.sheet_to_json(worksheet, {defval: ""});
 
-    // Conversion en JSON tableau avec header
-    const jsonData = XLSX.utils.sheet_to_json(worksheet, {defval: ""});
+        const section = document.createElement('section');
+        const titre = document.createElement('h2');
+        titre.textContent = `Thème : ${sheetName}`;
+        section.appendChild(titre);
 
-    // Remplissage du tableau HTML
-    const tbody = document.querySelector('#table-qr tbody');
-    tbody.innerHTML = ''; // vide le tableau
-    jsonData.forEach(row => {
-      const tr = document.createElement('tr');
-      const tdQuestion = document.createElement('td');
-      tdQuestion.textContent = row['Questions'] || '';
-      const tdReponse = document.createElement('td');
-      tdReponse.textContent = row['Réponses'] || '';
-      tr.appendChild(tdQuestion);
-      tr.appendChild(tdReponse);
-      tbody.appendChild(tr);
+        const table = document.createElement('table');
+        const thead = document.createElement('thead');
+        thead.innerHTML = '<tr><th>Question</th><th>Réponse</th></tr>';
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        jsonData.forEach(row => {
+          const tr = document.createElement('tr');
+          const tdQ = document.createElement('td');
+          tdQ.textContent = row['Questions'] || '';
+          const tdR = document.createElement('td');
+          tdR.textContent = row['Réponses'] || '';
+          tr.appendChild(tdQ);
+          tr.appendChild(tdR);
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+
+        section.appendChild(table);
+        container.appendChild(section);
+      });
+    })
+    .catch(err => {
+      document.getElementById('contenu').textContent = `Erreur : ${err.message}`;
     });
-  };
-  reader.readAsArrayBuffer(file);
-});
 </script>
+
 </body>
 </html>
