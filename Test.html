@@ -1,70 +1,70 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Affichage Questions-Réponses par onglet</title>
-  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-  <style>
-    table { border-collapse: collapse; width: 100%; margin-bottom: 2em; }
-    th, td { border: 1px solid #ccc; padding: 8px; }
-    th { background-color: #f0f0f0; }
-    section { margin-bottom: 2em; }
-    h2 { border-bottom: 2px solid #333; }
-  </style>
+<meta charset="UTF-8" />
+<title>Questions-Réponses par onglet</title>
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+<style>
+  body { font-family: Arial, sans-serif; }
+  article { margin-bottom: 2em; }
+  h2 { border-bottom: 1px solid #ccc; padding-bottom: 0.5em; }
+  table { border-collapse: collapse; width: 100%; margin-top: 0.5em; }
+  th, td { border: 1px solid #ccc; padding: 8px; }
+  th { background-color: #f9f9f9; }
+</style>
 </head>
 <body>
-  <h1>Import Excel automatique - Questions-Réponses par thème (onglets)</h1>
-  <div id="contenu"></div>
-
+<h1>Affichage Questions-Réponses par Onglet</h1>
+<div id="contenu">Chargement...</div>
 <script>
-  // Le chemin relatif vers le fichier Excel à charger
-  const fichierExcel = 'Questions_Réponses.xlsx';
+// L'URL exacte du fichier Excel hébergé sur GitHub Pages
+const urlFichier = 'https://aurelieleger49-ops.github.io/oral-ingenieur-territorial/Questions_R%C3%A9ponses.xlsx';
 
-  fetch(fichierExcel)
-    .then(res => {
-      if (!res.ok) throw new Error('Erreur de chargement du fichier Excel');
-      return res.arrayBuffer();
-    })
-    .then(data => {
-      const workbook = XLSX.read(new Uint8Array(data), {type: 'array'});
-      const container = document.getElementById('contenu');
-      container.innerHTML = '';
+fetch(urlFichier)
+  .then(res => {
+    if (!res.ok) throw new Error('Erreur de chargement du fichier');
+    return res.arrayBuffer();
+  })
+  .then(data => {
+    const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+    const container = document.getElementById('contenu');
+    container.innerHTML = '';
 
-      workbook.SheetNames.forEach(sheetName => {
-        const worksheet = workbook.Sheets[sheetName];
-        const jsonData = XLSX.utils.sheet_to_json(worksheet, {defval: ""});
+    workbook.SheetNames.forEach(sheetName => {
+      const worksheet = workbook.Sheets[sheetName];
+      const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: '' });
 
-        const section = document.createElement('section');
-        const titre = document.createElement('h2');
-        titre.textContent = `Thème : ${sheetName}`;
-        section.appendChild(titre);
+      // Création de la section pour cet onglet
+      const article = document.createElement('article');
+      const titre = document.createElement('h2');
+      titre.textContent = sheetName;
+      article.appendChild(titre);
 
-        const table = document.createElement('table');
-        const thead = document.createElement('thead');
-        thead.innerHTML = '<tr><th>Question</th><th>Réponse</th></tr>';
-        table.appendChild(thead);
+      // Création du tableau Questions / Réponses
+      const table = document.createElement('table');
+      const thead = document.createElement('thead');
+      thead.innerHTML = '<tr><th>Question</th><th>Réponse</th></tr>';
+      table.appendChild(thead);
 
-        const tbody = document.createElement('tbody');
-        jsonData.forEach(row => {
-          const tr = document.createElement('tr');
-          const tdQ = document.createElement('td');
-          tdQ.textContent = row['Questions'] || '';
-          const tdR = document.createElement('td');
-          tdR.textContent = row['Réponses'] || '';
-          tr.appendChild(tdQ);
-          tr.appendChild(tdR);
-          tbody.appendChild(tr);
-        });
-        table.appendChild(tbody);
-
-        section.appendChild(table);
-        container.appendChild(section);
+      const tbody = document.createElement('tbody');
+      jsonData.forEach(row => {
+        const tr = document.createElement('tr');
+        const tdQ = document.createElement('td');
+        tdQ.textContent = row['Questions'] || '';
+        const tdR = document.createElement('td');
+        tdR.textContent = row['Réponses'] || '';
+        tr.appendChild(tdQ);
+        tr.appendChild(tdR);
+        tbody.appendChild(tr);
       });
-    })
-    .catch(err => {
-      document.getElementById('contenu').textContent = `Erreur : ${err.message}`;
+      table.appendChild(tbody);
+      article.appendChild(table);
+      container.appendChild(article);
     });
+  })
+  .catch(error => {
+    document.getElementById('contenu').textContent = 'Erreur : ' + error.message;
+  });
 </script>
-
 </body>
 </html>
