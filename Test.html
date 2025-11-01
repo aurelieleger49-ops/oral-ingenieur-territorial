@@ -2,22 +2,13 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<title>Questions-Réponses par onglet</title>
+<title>Questions-Réponses par thème</title>
 <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-<style>
-  body { font-family: Arial, sans-serif; }
-  article { margin-bottom: 2em; }
-  h2 { border-bottom: 1px solid #ccc; padding-bottom: 0.5em; }
-  table { border-collapse: collapse; width: 100%; margin-top: 0.5em; }
-  th, td { border: 1px solid #ccc; padding: 8px; }
-  th { background-color: #f9f9f9; }
-</style>
 </head>
 <body>
-<h1>Affichage Questions-Réponses par Onglet</h1>
+<h1>Questions-Réponses par thème</h1>
 <div id="contenu">Chargement...</div>
 <script>
-// L'URL exacte du fichier Excel hébergé sur GitHub Pages
 const urlFichier = 'https://aurelieleger49-ops.github.io/oral-ingenieur-territorial/QR.xlsx';
 
 fetch(urlFichier)
@@ -34,37 +25,41 @@ fetch(urlFichier)
       const worksheet = workbook.Sheets[sheetName];
       const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: '' });
 
-      // Création de la section pour cet onglet
-      const article = document.createElement('article');
+      // Création de la section thème
+      const section = document.createElement('section');
+
       const titre = document.createElement('h2');
       titre.textContent = sheetName;
-      article.appendChild(titre);
+      section.appendChild(titre);
 
-      // Création du tableau Questions / Réponses
-      const table = document.createElement('table');
-      const thead = document.createElement('thead');
-      thead.innerHTML = '<tr><th>Question</th><th>Réponse</th></tr>';
-      table.appendChild(thead);
+      const ul = document.createElement('ul');
 
-      const tbody = document.createElement('tbody');
       jsonData.forEach(row => {
-        const tr = document.createElement('tr');
-        const tdQ = document.createElement('td');
-        tdQ.textContent = row['Questions'] || '';
-        const tdR = document.createElement('td');
-        tdR.textContent = row['Réponses'] || '';
-        tr.appendChild(tdQ);
-        tr.appendChild(tdR);
-        tbody.appendChild(tr);
+        const bloc = document.createElement('div');
+        bloc.className = 'bloc';
+
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'question';
+        questionDiv.textContent = row['Questions'] || '';
+
+        const reponseDiv = document.createElement('div');
+        reponseDiv.className = 'reponse';
+        reponseDiv.textContent = row['Réponses'] || '';
+
+        bloc.appendChild(questionDiv);
+        bloc.appendChild(reponseDiv);
+
+        ul.appendChild(bloc);
       });
-      table.appendChild(tbody);
-      article.appendChild(table);
-      container.appendChild(article);
+
+      section.appendChild(ul);
+      container.appendChild(section);
     });
   })
   .catch(error => {
     document.getElementById('contenu').textContent = 'Erreur : ' + error.message;
   });
 </script>
+<p><a href="index.html">Retour à l’index</a></p>
 </body>
 </html>
