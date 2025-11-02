@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Jeu de questions interactif</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <div id="theme-container">
+    <h1>Jeu de Questions-Réponses</h1>
+    <div id="game" style="display:none;">
+        <div id="question">Chargement des questions...</div>
+        <button id="show-answer-btn">Afficher la réponse</button>
+        <button id="next-question-btn">Question suivante</button>
+        <div id="answer"></div>
+    </div>
+
+    <!-- Bibliothèque SheetJS pour lire Excel dans le navigateur -->
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <script src="script_jeu.js"></script>
+<p><a href="index.html">Retour à l’index</a></p>
+</div>
+</body>
+</html>
