@@ -359,5 +359,62 @@ table.theme-defis {
   .nolists li       { margin-bottom: 12px; border-bottom: 1px solid #d1dbf0; padding-bottom: 6px; }
   .nolists li:last-child { border-bottom: none; }
 
+.gameboard {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 10px;
+  border: 2px solid #0b54c9;
+  border-radius: 10px;
+  background: #e6f0ff;
+  text-align: center;
+}
 
+#board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 360px;
+  margin: 20px auto;
+}
 
+.case {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #0b54c9;
+  line-height: 40px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #0b54c9;
+  position: relative;
+}
+
+.case.current {
+  background-color: #0b54c9;
+  color: white;
+  font-weight: bold;
+}
+
+#roll-dice-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #0b54c9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#dice-result, #game-message {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #001e4d;
+}
+#answer {
+	margin-top: 1em;
+	color: green;
+	font-style: italic;
+	display: none;
+}
+button {
+	margin-right: 1em;
+	margin-top: 1em;
+}
